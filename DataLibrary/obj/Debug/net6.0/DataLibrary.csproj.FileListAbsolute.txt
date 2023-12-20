@@ -1,0 +1,17 @@
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\bin\Debug\net6.0\DataLibrary.deps.json
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\bin\Debug\net6.0\DataLibrary.dll
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\bin\Debug\net6.0\DataLibrary.pdb
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\bin\Debug\net6.0\DomainLibrary.dll
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\bin\Debug\net6.0\DomainLibrary.pdb
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.csproj.AssemblyReference.cache
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.AssemblyInfoInputs.cache
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.AssemblyInfo.cs
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.csproj.CopyComplete
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.dll
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\refint\DataLibrary.dll
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.pdb
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\ref\DataLibrary.dll
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\bin\Debug\net6.0\DataLibrary.runtimeconfig.json
+C:\Users\Micro-12\source\repos\venda_produto_app\DataLibrary\obj\Debug\net6.0\DataLibrary.genruntimeconfig.cache
