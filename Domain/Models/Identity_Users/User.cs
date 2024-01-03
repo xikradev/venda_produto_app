@@ -13,6 +13,8 @@ namespace Domain.Models.Identity_Users
         {
             Id = Guid.NewGuid().ToString();
         }
+
+        public string FullName { get; set; }
         public string CPF { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? Gender { get; set; }

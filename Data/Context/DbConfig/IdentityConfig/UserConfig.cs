@@ -14,7 +14,7 @@ namespace Data.Context.DbConfig.IdentityConfig
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(o => o.UserName)
+            builder.Property(o => o.FullName)
             .IsRequired()
             .HasMaxLength(150);
             builder.Property(o => o.Email)
@@ -51,10 +51,6 @@ namespace Data.Context.DbConfig.IdentityConfig
             .IsRequired();
             builder.Property(o => o.AccessFailedCount)
             .IsRequired();
-
-            builder.HasOne(a => a.Address)
-            .WithOne()
-            .HasForeignKey<User>(e => e.AddressId);
 
             builder.ToTable("AspNetUsers");
         }

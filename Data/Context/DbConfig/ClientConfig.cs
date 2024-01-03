@@ -38,12 +38,6 @@ namespace Data.Context.DbConfig
                 .IsRequired(false)
                 .HasMaxLength(100);
 
-            
-
-            builder.HasOne(a => a.Address)
-            .WithOne()
-            .HasForeignKey<Client>(e => e.AddressId);
-
         }
     }
 }

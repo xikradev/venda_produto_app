@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Domain.Models.Identity_Users;
 using Domain.Validator;
 using FluentValidation.Results;
 using System;
@@ -19,7 +20,8 @@ namespace Domain.Models
         public int? Number { get; set; }
         public string UF { get; set; }
         public string City { get; set; }
-        public virtual Client? Client { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual User User { get; set; }
         [NotMapped]
         public ValidationResult ValidationResult {  get; set; }
         [NotMapped]

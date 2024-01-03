@@ -76,9 +76,6 @@ namespace Data.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AddressId1")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("Date");
 
@@ -111,10 +108,6 @@ namespace Data.Migrations
 
                     b.HasIndex("AddressId")
                         .IsUnique();
-
-                    b.HasIndex("AddressId1")
-                        .IsUnique()
-                        .HasFilter("[AddressId1] IS NOT NULL");
 
                     b.HasIndex("Register")
                         .IsUnique();
@@ -203,6 +196,11 @@ namespace Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
                     b.Property<string>("Gender")
                         .HasColumnType("CHAR(1)");
 
@@ -236,9 +234,7 @@ namespace Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -452,14 +448,10 @@ namespace Data.Migrations
             modelBuilder.Entity("Domain.Models.Client", b =>
                 {
                     b.HasOne("Domain.Models.Address", "Address")
-                        .WithOne()
+                        .WithOne("Client")
                         .HasForeignKey("Domain.Models.Client", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Models.Address", null)
-                        .WithOne("Client")
-                        .HasForeignKey("Domain.Models.Client", "AddressId1");
 
                     b.Navigation("Address");
                 });
@@ -476,7 +468,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Domain.Models.Identity_Users.User", b =>
                 {
                     b.HasOne("Domain.Models.Address", "Address")
-                        .WithOne()
+                        .WithOne("User")
                         .HasForeignKey("Domain.Models.Identity_Users.User", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -545,7 +537,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.Models.Address", b =>
                 {
-                    b.Navigation("Client");
+                    b.Navigation("Client")
+                        .IsRequired();
+
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Models.Identity_Users.Roles", b =>

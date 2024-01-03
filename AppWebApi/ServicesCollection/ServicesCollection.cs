@@ -10,6 +10,7 @@ using Domain.Interfaces.Repository;
 using Domain.Interfaces.Repository._Base;
 using Domain.Interfaces.Services;
 using Domain.Interfaces.Services._Base;
+using Domain.Models;
 using Domain.Services;
 using Domain.Services._Base;
 
@@ -34,6 +35,7 @@ namespace AppWebApi.ServicesCollection
             services.AddScoped<IClientAppService, ClientAppService>();
             services.AddScoped<ISupplierAppService, SupplierAppService>();
             services.AddScoped<IProductSupplierAppService, ProductSupplierAppService>();
+            services.AddScoped<IAuthenticateAppService, AuthenticateAppService>();
             #endregion
 
             #region Domain
@@ -42,6 +44,7 @@ namespace AppWebApi.ServicesCollection
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IProductSupplierService, ProductSupplierService>();
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
             #endregion
 
             #region Data

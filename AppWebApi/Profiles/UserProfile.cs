@@ -8,7 +8,7 @@ namespace AppWebApi.Profiles
     {
         public UserProfile() 
         {
-            CreateMap<CreateUserDto, User>();
+            CreateMap<RegisterModel, User>();
         }
     }
 }
