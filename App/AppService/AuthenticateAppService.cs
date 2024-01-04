@@ -1,5 +1,6 @@
 ﻿using App.Interfaces;
 using Domain.DTO.Create;
+using Domain.DTO.Read;
 using Domain.Interfaces.Services;
 using Domain.Models.Identity_Users;
 using Domain.ModelsException;
@@ -16,9 +17,9 @@ namespace App.AppService
             _authenticateService = authenticateService;
         }
 
-        public Task<bool> Authenticate(string email, string password)
+        public async Task<UserLoginResponse> Authenticate(UserLoginRequest userLogin)
         {
-            return _authenticateService.Authenticate(email, password);
+            return await _authenticateService.Authenticate(userLogin);
         }
 
         public Task Logout()
@@ -26,9 +27,9 @@ namespace App.AppService
             return _authenticateService.Logout();
         }
 
-        public Task<UserException> RegisterUser(User user, string password, string role)
+        public Task<UserRegisterResponse> RegisterUser(UserRegisterRequest userRegister)
         {
-            return _authenticateService.RegisterUser(user, password, role);
+            return _authenticateService.RegisterUser(userRegister);
         }
     }
 }

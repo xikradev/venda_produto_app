@@ -4,12 +4,14 @@ using Domain.DTO.Create;
 using Domain.DTO.Read;
 using Domain.Models;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppWebApi.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly IProductAppService _appService;
@@ -117,6 +119,7 @@ namespace AppWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             Product product = _appService.Find(id);

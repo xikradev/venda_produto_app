@@ -22,27 +22,38 @@ namespace AppWebApi.Controllers
             _config = config;
         }
 
-        [HttpPost("createuser")]
-        public async Task<ActionResult<UserToken>> CreateUser([FromBody] RegisterModel model)
+        [HttpPost("login")]
+        public async Task<ActionResult<UserLoginResponse>> Login([FromBody] UserLoginRequest userLogin)
         {
-            if(model.Password != model.ConfirmPassword)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("ConfirmPassword", "As Senhas não conferem");
                 return BadRequest(ModelState);
             }
+            var result = await _authenticate.Authenticate(userLogin);
+            if(result.Success)
+            {
+                return Ok(result);
+            }
+            return Unauthorized(result);
+        }
 
-            User user = new User {
-                UserName = "aaaa111",
-                FullName = model.Fullname,
-                Email = model.Email,
-                BirthDate = model.BirthDate,
-                CPF = model.CPF,
-                Gender = model.Gender
-            };  
+        [HttpPost("register")]
+        public async Task<ActionResult<UserRegisterResponse>> CreateUser([FromBody] UserRegisterRequest userRegister)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _authenticate.RegisterUser(userRegister);
+            if (result.Success)
+            {
+                return Ok(result);
+            }else if (result.Errors.Count >0)
+            {
+                return BadRequest(result);
+            }
 
-            var result = await _authenticate.RegisterUser(user, model.Password, model.Role);
-
-            return StatusCode(result.StatusCode, result.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
 }

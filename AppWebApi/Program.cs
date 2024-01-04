@@ -21,6 +21,7 @@ builder.Services.AddIdentity<User, Roles>()
     .AddDefaultTokenProviders()
     .AddSignInManager();
 
+builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddVendaProdutoContext();
 builder.Services.AddVendaProdutoServices();
 
@@ -51,6 +52,35 @@ builder.Services.AddAutoMapper(config =>
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Venda_Produto", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = @"JWT Authentication header using the Bearer scheme.
+                        Enter 'Bearer' [space] and then your token in the text input below.
+                        Example: 'Bearer 12345abcdef'",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+            },
+            new List<string>()
+        }
+    });
 });
 
 var app = builder.Build();

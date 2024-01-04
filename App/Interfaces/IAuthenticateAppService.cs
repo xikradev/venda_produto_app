@@ -1,4 +1,5 @@
 ﻿using Domain.DTO.Create;
+using Domain.DTO.Read;
 using Domain.Models.Identity_Users;
 using Domain.ModelsException;
 using Microsoft.AspNetCore.Identity;
@@ -12,8 +13,8 @@ namespace App.Interfaces
 {
     public interface IAuthenticateAppService
     {
-        Task<bool> Authenticate(string email, string password);
-        Task<UserException> RegisterUser(User user, string password, string role);
+        Task<UserLoginResponse> Authenticate(UserLoginRequest userLogin);
+        Task<UserRegisterResponse> RegisterUser(UserRegisterRequest userRegister);
         Task Logout();
     }
 }

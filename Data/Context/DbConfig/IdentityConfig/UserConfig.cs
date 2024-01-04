@@ -1,4 +1,5 @@
-﻿using Domain.Models.Identity_Users;
+﻿using Domain.Models;
+using Domain.Models.Identity_Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -51,6 +52,11 @@ namespace Data.Context.DbConfig.IdentityConfig
             .IsRequired();
             builder.Property(o => o.AccessFailedCount)
             .IsRequired();
+
+            builder
+            .HasOne(u => u.Address)
+            .WithOne(a => a.User)
+            .HasForeignKey<User>(u => u.AddressId);
 
             builder.ToTable("AspNetUsers");
         }

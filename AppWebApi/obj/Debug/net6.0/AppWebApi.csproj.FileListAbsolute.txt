@@ -110,3 +110,4 @@ C:\Users\Micro-12\source\repos\venda_produto_app\AppWebApi\bin\Debug\net6.0\Micr
 C:\Users\Micro-12\source\repos\venda_produto_app\AppWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Micro-12\source\repos\venda_produto_app\AppWebApi\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Micro-12\source\repos\venda_produto_app\AppWebApi\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Micro-12\source\repos\venda_produto_app\AppWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

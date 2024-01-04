@@ -24,15 +24,7 @@ namespace Data.Context.DbConfig
             builder.Property(a => a.UF).HasColumnType("CHAR(2)").IsRequired();
             builder.Property(a => a.City).HasMaxLength(80).IsRequired();
 
-            builder
-            .HasOne(a => a.Client)
-            .WithOne(c => c.Address)
-            .HasForeignKey<Client>(c => c.AddressId);
-
-            builder
-            .HasOne(a => a.User)
-            .WithOne(u => u.Address)
-            .HasForeignKey<User>(u => u.AddressId);
+            
         }
     }
 }

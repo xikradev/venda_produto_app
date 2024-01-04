@@ -10,7 +10,6 @@ using Domain.Interfaces.Repository;
 using Domain.Interfaces.Repository._Base;
 using Domain.Interfaces.Services;
 using Domain.Interfaces.Services._Base;
-using Domain.Models;
 using Domain.Services;
 using Domain.Services._Base;
 

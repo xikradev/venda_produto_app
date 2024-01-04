@@ -4,12 +4,14 @@ using Domain.DTO.Create;
 using Domain.DTO.Read;
 using Domain.Models;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppWebApi.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
+    [Authorize(Roles = "Admin")]
     public class AddressController : ControllerBase
     {
         private readonly IAddressAppService _appService;
