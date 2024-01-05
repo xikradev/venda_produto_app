@@ -242,6 +242,34 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "sales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TotalPrice = table.Column<decimal>(type: "decimal(20,2)", nullable: false),
+                    Date = table.Column<DateTime>(type: "Date", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_sales_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_sales_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductSuppliers",
                 columns: table => new
                 {
@@ -323,6 +351,16 @@ namespace Data.Migrations
                 column: "SupplierId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_sales_ClientId",
+                table: "sales",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sales_UserId",
+                table: "sales",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Suppliers_AddressId",
                 table: "Suppliers",
                 column: "AddressId",
@@ -353,22 +391,25 @@ namespace Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Clients");
-
-            migrationBuilder.DropTable(
                 name: "ProductSuppliers");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "sales");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Suppliers");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

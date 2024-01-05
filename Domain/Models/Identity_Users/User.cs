@@ -22,6 +22,7 @@ namespace Domain.Models.Identity_Users
         public virtual Address Address { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
         public virtual ICollection<UserClaims> UserClaims { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
 
     }
 }

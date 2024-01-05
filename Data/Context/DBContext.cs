@@ -8,6 +8,7 @@ using Domain.Models.Identity_Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Data.Context
         public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
             ChangeTracker.LazyLoadingEnabled = true;
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,6 +34,7 @@ namespace Data.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<ProductSupplier> ProductSuppliers { get; set; }
+        public DbSet<Sale> sales { get; set; }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
@@ -45,6 +48,8 @@ namespace Data.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            
+
             modelBuilder.Entity<UserRoles>().HasNoKey();
 
             modelBuilder.ApplyConfiguration(new AddressConfig());
@@ -52,6 +57,7 @@ namespace Data.Context
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new SupplierConfig());
             modelBuilder.ApplyConfiguration(new ProductSupplierConfig());
+            modelBuilder.ApplyConfiguration(new SaleConfig());
 
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new RolesConfig());

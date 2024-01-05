@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20240104172026_GenerateDB")]
+    [Migration("20240105182351_GenerateDB")]
     partial class GenerateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -395,6 +395,41 @@ namespace Data.Migrations
                     b.ToTable("ProductSuppliers");
                 });
 
+            modelBuilder.Entity("Domain.Models.Sale", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(20,2)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("sales");
+                });
+
             modelBuilder.Entity("Domain.Models.Supplier", b =>
                 {
                     b.Property<int>("Id")
@@ -526,6 +561,25 @@ namespace Data.Migrations
                     b.Navigation("Supplier");
                 });
 
+            modelBuilder.Entity("Domain.Models.Sale", b =>
+                {
+                    b.HasOne("Domain.Models.Client", "Client")
+                        .WithMany("Sales")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Identity_Users.User", "User")
+                        .WithMany("Sales")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Models.Supplier", b =>
                 {
                     b.HasOne("Domain.Models.Address", "Address")
@@ -546,6 +600,11 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Domain.Models.Client", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
             modelBuilder.Entity("Domain.Models.Identity_Users.Roles", b =>
                 {
                     b.Navigation("RoleClaims");
@@ -555,6 +614,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.Models.Identity_Users.User", b =>
                 {
+                    b.Navigation("Sales");
+
                     b.Navigation("UserClaims");
 
                     b.Navigation("UserRoles");

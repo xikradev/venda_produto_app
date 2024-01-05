@@ -23,6 +23,7 @@ namespace Domain.Models
         public string? BussisnesArea { get; set; }
         public int AddressId { get; set; }
         public virtual Address Address { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
 
         [NotMapped]
         public ValidationResult ValidationResult { get; set; }
