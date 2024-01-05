@@ -18,6 +18,7 @@ namespace Domain.Models
         public string Description { get; set; }
         public decimal Quantity_in_stock { get; set; }
         public virtual ICollection<ProductSupplier> ProductSuppliers { get; set; }
+        public virtual ICollection<SaleItem> SaleItems { get; set; }
 
         [NotMapped]
         public ValidationResult ValidationResult {  get; set; }

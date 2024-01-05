@@ -20,7 +20,7 @@ namespace Domain.Models
         public virtual User User { get; set; }
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
+        public virtual ICollection<SaleItem> SaleItems { get; set; }
 
-       
     }
 }
