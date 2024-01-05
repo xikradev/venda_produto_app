@@ -249,7 +249,7 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalPrice = table.Column<decimal>(type: "decimal(20,2)", nullable: false),
                     Date = table.Column<DateTime>(type: "Date", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    PaymentMethod = table.Column<int>(type: "int", maxLength: 80, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false)
                 },

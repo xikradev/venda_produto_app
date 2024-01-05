@@ -23,6 +23,7 @@ namespace Data.Context.DbConfig
                 .WithMany(s => s.SaleItems)
                 .HasForeignKey(s => s.SaleId);
 
+
             builder.Property(s => s.Quantity)
                 .IsRequired();
             builder.Property(s => s.UnitPrice)

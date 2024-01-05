@@ -43,6 +43,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ProductSupplierMessage.resx</DependentUpon>
     </Compile>
+    <Compile Update="Validator\Messages\SaleItemMessage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SaleItemMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Validator\Messages\SaleMessage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SaleMessage.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +71,14 @@
     <EmbeddedResource Update="Validator\Messages\ProductSupplierMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductSupplierMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Validator\Messages\SaleItemMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SaleItemMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Validator\Messages\SaleMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SaleMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
