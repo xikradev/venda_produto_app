@@ -8123,25 +8123,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Micro-12\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\matia\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Micro-12\\source\\repos\\venda_produto_app\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\projetos-trabalho\\venda_produto_app\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\Micro-12\\source\\repos\\venda_produto_app\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\Micro-12\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Micro-12\\source\\repos\\venda_produto_app\\Data\\obj\\",
+      "projectPath": "C:\\projetos-trabalho\\venda_produto_app\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\matia\\.nuget\\packages\\",
+      "outputPath": "C:\\projetos-trabalho\\venda_produto_app\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Micro-12\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8150,14 +8148,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Micro-12\\source\\repos\\venda_produto_app\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Micro-12\\source\\repos\\venda_produto_app\\Domain\\Domain.csproj"
+            "C:\\projetos-trabalho\\venda_produto_app\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\projetos-trabalho\\venda_produto_app\\Domain\\Domain.csproj"
             }
           }
         }
@@ -8215,7 +8214,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

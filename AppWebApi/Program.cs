@@ -9,12 +9,19 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var noteconnectionString = builder.Configuration.GetConnectionString("NotebookConnection");
+
+//builder.Services.AddDbContext<DBContext>(options =>
+//    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+
+//builder.Services.AddDbContext<UserDbContext>(options =>
+//    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 builder.Services.AddDbContext<DBContext>(options =>
-    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+    options.UseLazyLoadingProxies().UseSqlServer(noteconnectionString));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+    options.UseLazyLoadingProxies().UseSqlServer(noteconnectionString));
 
 builder.Services.AddIdentity<User, Roles>()
     .AddEntityFrameworkStores<UserDbContext>()
