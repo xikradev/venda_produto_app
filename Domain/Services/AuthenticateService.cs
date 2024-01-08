@@ -51,7 +51,7 @@ namespace Domain.Services
                 CPF = userRegister.CPF,
                 BirthDate = userRegister.BirthDate,
                 Gender = userRegister.Gender,
-                AddressId = userRegister.AddressId,
+                AddressId = userRegister.AddressId
             };
 
             if (await _roleManager.RoleExistsAsync(userRegister.Role))

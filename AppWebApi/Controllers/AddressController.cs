@@ -58,7 +58,7 @@ namespace AppWebApi.Controllers
 
                 if (result.IsValid)
                 {
-                    return Ok("Address added successfully.");
+                    return Ok($"Address added successfully. id: {address.Id}");
                 }
                 else
                 {

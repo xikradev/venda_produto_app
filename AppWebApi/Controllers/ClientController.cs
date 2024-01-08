@@ -1,4 +1,5 @@
-﻿using App.Interfaces;
+﻿using App.AppService;
+using App.Interfaces;
 using AutoMapper;
 using Domain.DTO.Create;
 using Domain.DTO.Read;
@@ -15,12 +16,14 @@ namespace AppWebApi.Controllers
     public class ClientController : ControllerBase
     {
         private readonly IClientAppService _appService;
+        private readonly IAddressAppService _addressAppService;
         private IMapper _mapper;
 
-        public ClientController(IClientAppService appService, IMapper mapper)
+        public ClientController(IClientAppService appService, IMapper mapper, IAddressAppService addressAppService)
         {
             _appService = appService;
             _mapper = mapper;
+            _addressAppService = addressAppService;
         }
 
         [HttpGet]
@@ -54,15 +57,35 @@ namespace AppWebApi.Controllers
             try
             {
                 Client client = _mapper.Map<Client>(clientDto);
-                ValidationResult result = _appService.Add(client);
-                if(result.IsValid)
+                var address = new Address()
                 {
-                    return Ok("Client added successfully.");
+                    Street = clientDto.Street,
+                    City = clientDto.City,
+                    UF = clientDto.UF,
+                    CEP = clientDto.CEP,
+                    Number = clientDto.Number,
+                    Complement = clientDto.Complement
+                };
+                var addressResponse = _addressAppService.Add(address);
+                if (addressResponse.IsValid)
+                {
+                    client.AddressId = address.Id;
+                    ValidationResult result = _appService.Add(client);
+                    if (result.IsValid)
+                    {
+                        return Ok("Client added successfully.");
+                    }
+                    else
+                    {
+                        return BadRequest(result.Errors);
+                    }
                 }
                 else
                 {
-                    return BadRequest(result.Errors);
+                    return BadRequest(addressResponse.Errors);
                 }
+
+                
 
             }catch(Exception ex)
             {

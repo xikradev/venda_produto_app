@@ -11,22 +11,38 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var noteconnectionString = builder.Configuration.GetConnectionString("NotebookConnection");
 
-//builder.Services.AddDbContext<DBContext>(options =>
-//    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
-
-//builder.Services.AddDbContext<UserDbContext>(options =>
-//    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
-
 builder.Services.AddDbContext<DBContext>(options =>
-    options.UseLazyLoadingProxies().UseSqlServer(noteconnectionString));
+    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseLazyLoadingProxies().UseSqlServer(noteconnectionString));
+    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+
+//builder.Services.AddDbContext<DBContext>(options =>
+//    options.UseLazyLoadingProxies().UseSqlServer(noteconnectionString));
+
+//builder.Services.AddDbContext<UserDbContext>(options =>
+//    options.UseLazyLoadingProxies().UseSqlServer(noteconnectionString));
 
 builder.Services.AddIdentity<User, Roles>()
     .AddEntityFrameworkStores<UserDbContext>()
     .AddDefaultTokenProviders()
     .AddSignInManager();
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+var roleManager = serviceProvider.GetRequiredService<RoleManager<Roles>>();
+
+string[] roleNames = { "Admin", "User" };
+IdentityResult roleResult;
+
+foreach (var roleName in roleNames)
+{
+    var roleExist = await roleManager.RoleExistsAsync(roleName);
+    if (!roleExist)
+    {
+        var newRole = new Roles { Name = roleName };
+        roleResult = await roleManager.CreateAsync(newRole);
+    }
+}
 
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddVendaProdutoContext();

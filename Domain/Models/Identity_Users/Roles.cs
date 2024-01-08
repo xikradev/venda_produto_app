@@ -9,7 +9,10 @@ namespace Domain.Models.Identity_Users
 {
     public class Roles : IdentityRole<String>
     {
-        public Roles() : base(){ }
+
+        public Roles() : base(){
+            Id = Guid.NewGuid().ToString();
+        }
 
         public virtual ICollection<RolesClaims> RoleClaims { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }

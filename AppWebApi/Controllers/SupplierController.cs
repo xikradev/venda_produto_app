@@ -15,12 +15,14 @@ namespace AppWebApi.Controllers
     public class SupplierController : ControllerBase
     {
         private readonly ISupplierAppService _service;
+        private readonly IAddressAppService _addressAppService;
         private IMapper _mapper;
 
-        public SupplierController(IMapper mapper, ISupplierAppService service)
+        public SupplierController(IMapper mapper, ISupplierAppService service, IAddressAppService addressAppService)
         {
             _mapper = mapper;
             _service = service;
+            _addressAppService = addressAppService;
         }
 
         [HttpGet]
@@ -64,12 +66,32 @@ namespace AppWebApi.Controllers
             try
             {
                 Supplier supplier = _mapper.Map<Supplier>(supplierDto);
-                ValidationResult result = _service.Add(supplier);
-                if (result.IsValid)
+                var address = new Address()
                 {
-                    return Ok("Supplier added successfully.");
+                    Street = supplierDto.Street,
+                    City = supplierDto.City,
+                    UF = supplierDto.UF,
+                    CEP = supplierDto.CEP,
+                    Number = supplierDto.Number,
+                    Complement = supplierDto.Complement
+                };
+                var addressResponse = _addressAppService.Add(address);
+                if (addressResponse.IsValid)
+                {
+                    supplier.AddressId = address.Id;
+                    ValidationResult result = _service.Add(supplier);
+
+                    if (result.IsValid)
+                    {
+                        return Ok("Supplier added successfully.");
+                    }
+                    return BadRequest(result.Errors);
                 }
-                return BadRequest(result.Errors);
+                else
+                {
+                    return BadRequest(addressResponse.Errors);
+                }
+
             }
             catch (Exception ex)
             {

@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domain.DTO.Create;
 using Domain.DTO.Read;
+using Domain.Models;
 using Domain.Models.Identity_Users;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,15 +12,13 @@ namespace AppWebApi.Controllers
     [Route("[Controller]")]
     public class AccountController : ControllerBase
     {
-        private readonly IConfiguration _config;
         private readonly IAuthenticateAppService _authenticate;
-        private readonly IMapper _mapper;
+        private readonly IAddressAppService _addressAppService;
 
-        public AccountController(IMapper mapper, IAuthenticateAppService authenticate, IConfiguration config)
+        public AccountController(IAuthenticateAppService authenticate, IAddressAppService addressAppService)
         {
-            _mapper = mapper;
             _authenticate = authenticate;
-            _config = config;
+            _addressAppService = addressAppService;
         }
 
         [HttpPost("login")]
@@ -40,20 +39,41 @@ namespace AppWebApi.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserRegisterResponse>> CreateUser([FromBody] UserRegisterRequest userRegister)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var result = await _authenticate.RegisterUser(userRegister);
-            if (result.Success)
-            {
-                return Ok(result);
-            }else if (result.Errors.Count >0)
-            {
-                return BadRequest(result);
-            }
 
-            return StatusCode(StatusCodes.Status500InternalServerError);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var address = new Address()
+                {
+                    Street = userRegister.Street,
+                    City = userRegister.City,
+                    UF = userRegister.UF,
+                    CEP = userRegister.CEP,
+                    Number = userRegister.Number,
+                    Complement = userRegister.Complement
+                };
+                var addressResponse = _addressAppService.Add(address);
+                if (addressResponse.IsValid)
+                {
+                userRegister.AddressId = address.Id;
+                    var result = await _authenticate.RegisterUser(userRegister);
+
+                    if (result.Success)
+                    {
+                        return Ok(result);
+                    }
+                    else if (result.Errors.Count > 0)
+                    {
+                        return BadRequest(result);
+                    }
+                }
+                else
+                {
+                    return BadRequest(addressResponse.Errors);
+                }
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
 }
