@@ -12,8 +12,6 @@ namespace Domain.DTO.Create
     public class CreateSaleDto
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        public string UserId { get; set; }
-        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public int ClientId { get; set; }
         [JsonIgnore]
         public decimal TotalPrice { get; set; } = 0;

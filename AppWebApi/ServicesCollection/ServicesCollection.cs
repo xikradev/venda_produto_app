@@ -35,6 +35,7 @@ namespace AppWebApi.ServicesCollection
             services.AddScoped<ISupplierAppService, SupplierAppService>();
             services.AddScoped<IProductSupplierAppService, ProductSupplierAppService>();
             services.AddScoped<IAuthenticateAppService, AuthenticateAppService>();
+            services.AddScoped<ISaleAppService, SaleAppService>();
             #endregion
 
             #region Domain
@@ -44,6 +45,7 @@ namespace AppWebApi.ServicesCollection
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IProductSupplierService, ProductSupplierService>();
             services.AddScoped<IAuthenticateService, AuthenticateService>();
+            services.AddScoped<ISaleService, SaleService>();
             #endregion
 
             #region Data
@@ -52,6 +54,7 @@ namespace AppWebApi.ServicesCollection
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<IProductSupplierRepository, ProductSupplierRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
             #endregion
         }
     }
